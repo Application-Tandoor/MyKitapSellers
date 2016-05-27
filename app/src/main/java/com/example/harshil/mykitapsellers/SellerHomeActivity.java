@@ -17,12 +17,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import butterknife.Bind;
 
 public class SellerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static String TAG = "SellerHomeActivity";
     public ActionBarDrawerToggle toggle;
+
+    @Bind(R.id.bookName) TextView _bookName;
+    @Bind(R.id.isbnText) EditText _isbnText;
+
+    @Bind(R.id.priceText) EditText _priceText;
+    @Bind(R.id.quantText) EditText _quantityText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,4 +174,61 @@ public class SellerHomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+    //methods for fragment
+    // UpdateStockFrag...
+
+    public void addBClicked(View v){
+
+        //perform necessary validation...
+        int price=Integer.parseInt(_priceText.getText().toString());
+        int quantity=Integer.parseInt(_quantityText.getText().toString());
+
+        if(quantity==0){
+            _quantityText.setError("Quantity can't be zero");
+            return;
+        }
+        if(_isbnText.length()<13){
+            _quantityText.setError("ISBN must be 13 charaacers long");
+            return;
+        }
+
+        _bookName.setText(getResources().getString(R.string.bookNameStr));
+        _priceText.setText(getResources().getString(R.string.priceStr));
+        _quantityText.setText(getResources().getString(R.string.quantityStr));
+
+        //add book details to corressponding objeccts, and stockList...
+//
+//
+//
+    }
+
+    public void cancelBClicked(View v){
+
+        //reset price & quantity inputs...
+        _priceText.setText(getResources().getString(R.string.priceStr));
+        _quantityText.setText(getResources().getString(R.string.quantityStr));
+    }
+
+    public void resetBClicked(View v){
+
+        //reset all book details...
+        _bookName.setText(getResources().getString(R.string.bookNameStr));
+        _isbnText.setText("");
+        _priceText.setText(getResources().getString(R.string.priceStr));
+        _quantityText.setText(getResources().getString(R.string.quantityStr));
+    }
+
+    public void fabBClicked(View v){
+
+        //inflate the UpdateListFrag fragment to enable user review its stock updates...
+        Fragment fragment = (Fragment)UpdateListFrag.newInstance();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+    }
+
+
 }
