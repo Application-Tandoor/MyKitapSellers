@@ -2,21 +2,19 @@ package com.example.harshil.mykitapsellers;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -134,11 +132,11 @@ public class SellerHomeActivity extends AppCompatActivity
 
         switch (id){
             case R.id.nav_manageStock :
-                fragClass=manage_stock.class;
+                fragClass=ManageStockFrag.class;
                 break;
-//            case R.id.nav_myCash :
-//                fragClass=ManageStockActivity.class;
-//                break;
+            case R.id.nav_myCash :
+                fragClass=MyCashFrag.class;
+                break;
 //            case R.id.nav_accounting :
 //                fragClass=MyCashActivity.class;
 //                break;
@@ -224,7 +222,16 @@ public class SellerHomeActivity extends AppCompatActivity
     public void fabBClicked(View v){
 
         //inflate the UpdateListFrag fragment to enable user review its stock updates...
-        Fragment fragment = (Fragment)UpdateListFrag.newInstance();
+        Fragment fragment = (Fragment) UpdateListFrag.newInstance();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+    }
+
+    public void newBookClicked(View v){
+
+        //inflate the UpdateListFrag fragment to enable user review its stock updates...
+        Fragment fragment = (Fragment) UpdateStockFrag.newInstance();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
