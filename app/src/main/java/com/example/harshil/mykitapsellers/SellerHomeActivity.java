@@ -133,9 +133,9 @@ public class SellerHomeActivity extends AppCompatActivity
         Class fragClass;
 
         switch (id){
-//            case R.id.nav_manageStock :
-//                fragClass=UpdateStockFrag.class;
-//                break;
+            case R.id.nav_manageStock :
+                fragClass=manage_stock.class;
+                break;
 //            case R.id.nav_myCash :
 //                fragClass=ManageStockActivity.class;
 //                break;
