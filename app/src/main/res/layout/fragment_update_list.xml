@@ -22,7 +22,8 @@
             android:layout_alignRight="@+id/stockList"
             android:layout_alignEnd="@+id/stockList"
             android:layout_marginRight="33dp"
-            android:layout_marginEnd="33dp" />
+            android:layout_marginEnd="33dp"
+            android:layout_marginBottom="50dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -34,7 +35,8 @@
             android:layout_toStartOf="@+id/commitB"
             android:layout_marginRight="44dp"
             android:layout_marginEnd="44dp"
-            android:onClick="cancelUpdate" />
+            android:onClick="cancelUpdate"
+            android:layout_marginBottom="50dp" />
 
         <ListView
             android:layout_width="wrap_content"
@@ -42,17 +44,16 @@
             android:id="@+id/stockList"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/commitB"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_above="@+id/commitB" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/newBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@drawable/new_book"
             android:layout_alignBottom="@+id/stockList"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"

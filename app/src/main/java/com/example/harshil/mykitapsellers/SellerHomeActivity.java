@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -70,7 +71,11 @@ public class SellerHomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.flags |= WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
     }
 
 
@@ -228,14 +233,45 @@ public class SellerHomeActivity extends AppCompatActivity
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
     }
 
+
+
+    //methods for fragment
+    // UpdateListFrag...
+
     public void newBookClicked(View v){
 
-        //inflate the UpdateListFrag fragment to enable user review its stock updates...
+        //inflate the UpdateStockFrag fragment
+        // to enable user to add new books to its stock...
         Fragment fragment = (Fragment) UpdateStockFrag.newInstance();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
     }
 
+
+
+    //methods for fragment
+    // UpdateListFrag...
+
+    public void cancelUpdate(View v){
+
+
+        //reset all details, as update has been scrapped by the user...
+
+
+        //inflate the UpdateListFrag fragment
+        // to enable user to add new books to its stock...
+        newBookClicked(v);
+    }
+
+    public void updateStock(View v){
+
+        //send stock update to server...
+
+
+        //inflate the UpdateListFrag fragment
+        // to enable user to add new books to its stock...
+        newBookClicked(v);
+    }
 
 }
